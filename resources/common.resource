@@ -5,9 +5,10 @@ Library    AppiumLibrary
 
 *** Variables ***
 # ${base_URL}    https://develop.qacoders-academy.com.br/api/
-${base_URL}    https://invictus.qacoders.dev.br/api/
+${base_URL}       https://invictus.qacoders.dev.br/api/
 ${email_admin}    sysadmin@qacoders.com
 ${senha_admin}    1234@Test
+${fake_token}     f90890f8as908f90as8fasdjfklasdjfkljasdlkfjaskljfklas
 
 *** Keywords ***
 Criar Sessao
@@ -35,4 +36,15 @@ Realizar Login
 
 Get Users
     [Arguments]    ${token}
-    ${resposta}    GET On Session    alias=bemol    url=/user/?token=${token}
+    ${resposta}    GET On Session    alias=bemol    expected_status=any    url=/user/?token=${token}
+    RETURN    ${resposta}
+
+Count Users
+    [Arguments]    ${token}
+    ${resposta}    GET On Session    alias=bemol    expected_status=any    url=/user/count/?token=${token}
+
+# UTEIS
+Validar Mensagem Login
+    [Arguments]    ${mensagem_esperada}    ${mensagem_resposta}
+    Should Be Equal    first=${mensagem_esperada}    second=${mensagem_resposta}
+
