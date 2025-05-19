@@ -4,6 +4,7 @@ Library    RequestsLibrary
 Library    AppiumLibrary
 Library    OperatingSystem
 Library    String
+Library    Collections
 
 *** Variables ***
 ${base_URL}    https://develop.qacoders.dev.br/api
@@ -17,6 +18,7 @@ Criar Sessao
     [Documentation]    Criar sessão inicial para ser reutilizada nas requests
     ${headers}    Create Dictionary    accept=application/json    Content-Type=application/json
     Create Session    alias=bemol    url=${base_URL}    headers=${headers}    verify=true
+    RETURN    ${headers}
 
 Pegar Token
     [Documentation]    Request usada para pegar o token Admin
@@ -80,6 +82,55 @@ Cadastrar Usuários
     ...    expected_status=201
     ...    url=/user
     ...    json=${body}
+    ...    headers=${headers}
+    
+    RETURN    ${resposta}
+
+Pesquisar Usuário por ID
+    [Arguments]    ${token}    ${id}
+
+    ${headers}    Criar Sessao
+
+    Set To Dictionary    ${headers}
+    ...    Authorization=${token}
+
+    ${resposta}   GET On Session
+    ...    alias=bemol
+    ...    expected_status=200
+    ...    url=/user/${id}
+    ...    headers=${headers}
+
+    RETURN    ${resposta}
+
+Atualizar Dados do Usuário
+    [Arguments]    ${token}    ${id}    ${dados}
+
+    ${headers}    Criar Sessao
+
+    Set To Dictionary    ${headers}
+    ...    Authorization=${token}
+    
+    ${resposta}    PUT On Session
+    ...    alias=bemol
+    ...    expected_status=200
+    ...    url=/user/${id}
+    ...    headers=${headers}
+    ...    json=${dados}
+    
+    RETURN    ${resposta}
+
+Excluir Usuário
+    [Arguments]    ${token}    ${id}
+
+    ${headers}    Criar Sessao
+
+    Set To Dictionary    ${headers}
+    ...    Authorization=${token}
+    
+    ${resposta}    DELETE On Session
+    ...    alias=bemol
+    ...    expected_status=200
+    ...    url=/user/${id}
     ...    headers=${headers}
     
     RETURN    ${resposta}
