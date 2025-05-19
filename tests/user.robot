@@ -27,11 +27,14 @@ CT003 - Validar Contagem de Usúarios com Sucesso
     ${resposta}    Count Users    ${token}
     ${count_novo}    Set variable    ${resposta.json()['count']}
 
-    Status Should Be    expected_status=200    response=${resposta}
-    Should Not Be Equal As Numbers    ${count_atual}    ${count_novo}    #validar que os números são diferentes
-    Should Be Equal As Numbers    ${count_atual}+1    ${count_novo}    #Atenção: se outro teste tiver rodando em paralelo, essa validação pode falhar
+    ${valor_esperado}    Evaluate    ${count_atual}+1
 
-  
+    #Exemplo de validações
+    Status Should Be    expected_status=200    response=${resposta}
+    Should Be True    ${resposta.json()['count']} > 0
+    Should Not Be Equal As Numbers    ${count_atual}    ${count_novo}    # validar que os números são diferentes
+    Should Be Equal    ${valor_esperado}   ${count_novo}    # Atenção: se outro teste que mexa nesse endpoint estiver rodando em paralelo, essa validação pode falhar
+
 CT004 - Validar Contagem de Usuários sem Token
     ${resposta}    Count Users    ${fake_token}
     Log To Console    ${resposta.json()}

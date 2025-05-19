@@ -6,8 +6,8 @@ Library    OperatingSystem
 Library    String
 
 *** Variables ***
-#${base_URL}    https://develop.qacoders-academy.com.br/api
-${base_URL}       https://invictus.qacoders.dev.br/api
+${base_URL}    https://develop.qacoders.dev.br/api
+#${base_URL}       https://invictus.qacoders.dev.br/api
 ${email_admin}    sysadmin@qacoders.com
 ${senha_admin}    1234@Test
 ${fake_token}     f90890f8as908f90as8fasdjfklasdjfkljasdlkfjaskljfklas
@@ -57,25 +57,28 @@ Cadastrar Usuários
 
     ${nome_completo}    Set Variable    ${primeiro_nome} ${segundo_nome}
 
+    ${cpf}    Generate Random String    11    [NUMBERS]
+
+    ${primeiro_nome_email}   Convert To Lower Case    ${primeiro_nome}
+    ${segundo_nome_email}   Convert To Lower Case    ${segundo_nome}
+
     ${body}    Create Dictionary
     ...    fullName=${nome_completo}
-    ...    mail=meuemail@mail.com
+    ...    mail=${primeiro_nome_email}${segundo_nome_email}_${cpf}@mail.com
     ...    accessProfile=ADMIN
-    ...    cpf=44455518746
+    ...    cpf=${cpf}
     ...    password=1234@Test
     ...    confirmPassword=1234@Test
-    
+
     ${headers}    Create Dictionary
     ...    accept=application/json
     ...    Content-Type=application/json
     ...    Authorization=${token}
 
-    #Criar Sessao
-
-    ${reposta}    POST On Session
+    ${resposta}    POST On Session
     ...    alias=bemol
     ...    expected_status=201
-    ...    url=/user/token=${token}
+    ...    url=/user
     ...    json=${body}
     ...    headers=${headers}
     
