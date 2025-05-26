@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    Arquivo contendo as principais Keywords do Projeto
 Library    RequestsLibrary
-Library    AppiumLibrary
+# Library    AppiumLibrary
 Library    OperatingSystem
 Library    String
 Library    Collections
