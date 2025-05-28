@@ -1,0 +1,33 @@
+name: Testes Robot com Relatorio
+
+on: [push, workflow_dispatch]
+
+jobs:
+    tests:
+        name: Testes Robot Framework
+        runs-on: ubuntu-24.04
+
+        steps:
+          - name: Clonando o projeto para a maquina virtual
+            uses: actions/checkout@v4
+
+          - name: Configurando o Python na maquina virtual
+            uses: actions/setup-python@v5
+
+          - name: Instalação das Dependencias
+            run: |
+              pip install robotframework
+              pip install robotframework-requests
+              pip install --upgrade robotframework-seleniumlibrary
+              pip install Faker
+      
+          - name: Executando os testes de API do Robot
+            run: |
+              robot --outputdir results/ .
+
+          - name: Test Report
+            uses: actions/upload-artifact@v4
+            if: always()
+            with:
+              name: robot-framework-report
+              path: results
