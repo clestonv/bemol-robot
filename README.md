@@ -1,27 +1,43 @@
-## Robot Framework API
+<h1 align="center">
+    <img src="resources/img/robot-logo.png">
+</h1>
 
-### 🎯 Como executar os testes com Robot Framework
+## 📋 Sobre
 
-Para rodar os testes, siga os passos abaixo:
+Este **Projeto** foi criado para um mini curso de CI/CD com Robot Framework usando GitActions
 
-1) Acesse a pasta onde os testes estão localizados (por padrão, a pasta tests):
+## 🚀 Tecnologias
+- [Python](https://www.python.org/)
+- [HTTP request methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+- [CSS Selectiors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors)
+- [PIP](https://pip.pypa.io/en/stable/)
 
-```bash
-cd tests
+
+## 🛠️ Tools
+- [Robot Framework](https://robotframework.org/)
+- [SeleniumLibrary](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html)
+- [Requests Library](https://docs.robotframework.org/docs/different_libraries/requests)
+- [Visual Studio Code](https://code.visualstudio.com)
+- [Git](https://git-scm.com/)
+
+## 🔍 Fontes
+
+- [William Alves da Silva](https://www.youtube.com/@qa.coders) - Qualidade de Software e Automação
+- [Pradap Pandiyan](https://talkingabouttesting.com/) - YML GitActions
+
+
+## 🎮 Como usar
+```
+1. Clonando o repositório 
+$ git clone git@github.com:clestonv/bemol-robot.git
+
+2. Acessando o diretório do projeto 
+$ cd bemol-robot
+
+3. Executando os testes
+$ robot -d /result/ tests/
+
 ```
 
-2) Acesse a pasta onde os testes estão localizados (por padrão, a pasta tests):
 
-```bash
-robot -d ../logs nome_da_suite.robot
-```
-
-ou
-
-```bash
-robot --outputdir ../logs nome_da_suite.robot
-```
-
-💡 Dicas:
-- Você também pode usar ./nome_da_suite.robot no lugar de nome_da_suite.robot. O ./ indica explicitamente que o arquivo está no diretório atual, mas não é obrigatório — ambos funcionam da mesma forma se o terminal estiver na pasta correta.
-- Substitua ```nome_da_suite.robot``` pelo nome do arquivo de teste que deseja executar.
+Feito por Cleberson Osorio 🌊

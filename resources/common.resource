@@ -7,7 +7,7 @@ Library    String
 Library    Collections
 
 *** Variables ***
-${base_URL}    https://develop.qacoders.dev.br/api
+${base_URL}       https://api-automacao.qacoders.dev.br/api
 #${base_URL}       https://invictus.qacoders.dev.br/api
 ${email_admin}    sysadmin@qacoders.com
 ${senha_admin}    1234@Test

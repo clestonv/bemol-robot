@@ -1,13 +1,9 @@
 *** Settings ***
 Resource    ../../resources/common.resource
-
-*** Variables ***
-${btn_login}      button[id=login]
-${input_email}    //*[@id="email"]
-${input_senha}    //*[@id="password"]
-${form_login}     /html/body/main/form
-${btn_logout}    nav > button
-${login_wrong}    div[role=alert]
+Resource    ../../resources/web.robot
 
 *** Test Cases ***
-CT001 - Validar exibição 
+#CT001 - Validar exibição modal empresa
+#CT002 - Validar exibição modal cliente
+#CT003 - Validar exibição modal usuarios
+#CT004 - Validar exibição modal diretorias

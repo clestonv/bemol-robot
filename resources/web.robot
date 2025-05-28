@@ -12,6 +12,15 @@ ${input_senha}    //*[@id="password"]
 ${form_login}     /html/body/main/form
 ${btn_logout}    nav > button
 ${login_wrong}    div[role=alert]
+# Menu
+${drawer}            div[class="css-11z55jn"]
+${btn_cadastros}    div[id=Cadastros] > span
+${btn_empresa}      a[href="/company"]
+${btn_cliente}      a[href="/client"]
+${btn_usuarios}      a[href="/user"]
+${btn_diretorias}      a[href="/board"]
+${btn_centrocusto}      a[href="/costCenter"]
+${btn_departamento}      a[href="/department"]
 
 
 *** Keywords ***
@@ -41,3 +50,8 @@ Validar Elemento Visivel
     Wait Until Element Is Visible    css=${selector}
     Element Should Be Visible    css=${selector}
     Capture Element Screenshot    css=${selector}
+
+
+Realizar Login Com Sucesso
+    Realizar Login    email=sysadmin@qacoders.com    senha=1234@Test
+
